@@ -89,3 +89,16 @@ class PackageCliTest(unittest.TestCase):
         result = self.run_cli("--output", str(self.source / "release.zip"))
         self.assertNotEqual(0, result.returncode)
         self.assertFalse((self.source / "release.zip").exists())
+
+    def test_crlf_checkout_produces_the_same_release_archive(self):
+        first = self.directory / "lf.zip"
+        result = self.run_cli("--output", str(first))
+        self.assertEqual(0, result.returncode, result.stderr)
+        for relative in FILES:
+            if relative.endswith((".md", ".json")):
+                path = self.source / relative
+                path.write_bytes(path.read_bytes().replace(b"\n", b"\r\n"))
+        second = self.directory / "crlf.zip"
+        result = self.run_cli("--output", str(second))
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertEqual(first.read_bytes(), second.read_bytes())

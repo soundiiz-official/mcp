@@ -40,6 +40,8 @@ Use an isolated client profile and a neutral workspace for installation tests. D
 python3 tools/package.py --output /tmp/soundiiz-client-package.zip
 ```
 
+`.gitattributes` keeps source text in LF form on all platforms. The packager also normalizes CRLF text to LF, so a Windows checkout produces the same ZIP as a Linux checkout. Binary logo bytes remain unchanged.
+
 The ZIP contains only the runtime manifests, MCP configuration, shared rule, logo, README, and changelog. Contributor tools and maintenance docs stay in the repository. Native manifest paths remain intact and `gemini-extension.json` stays at the ZIP root.
 
 Commit the checked files, create an annotated version tag, and publish the ZIP on the matching GitHub Release. Confirm the public download matches the locally validated archive. Verify fresh installation or update from the public repository before announcing availability.

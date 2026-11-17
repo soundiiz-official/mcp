@@ -35,6 +35,14 @@ def checked_path(relative):
     return path
 
 
+
+def release_bytes(relative):
+    raw = checked_path(relative).read_bytes()
+    if relative.endswith((".md", ".json")):
+        raw = raw.replace(b"\r\n", b"\n")
+    return raw
+
+
 def load_json(relative):
     return json.loads(checked_path(relative).read_text(encoding="utf-8"))
 
@@ -73,7 +81,7 @@ def check():
     if width != height or width < 128:
         raise ValueError("The logo must be square and at least 128 pixels")
     for relative in RUNTIME_FILES:
-        raw = checked_path(relative).read_bytes()
+        raw = release_bytes(relative)
         if relative.endswith((".md", ".json")):
             if b"\r" in raw or not raw.endswith(b"\n"):
                 raise ValueError("Text files must use UTF-8 with LF endings: " + relative)
@@ -91,13 +99,13 @@ def package_bytes():
             info.compress_type = zipfile.ZIP_DEFLATED
             info.create_system = 3
             info.external_attr = 0o100644 << 16
-            archive.writestr(info, checked_path(relative).read_bytes())
+            archive.writestr(info, release_bytes(relative))
     data = buffer.getvalue()
     with zipfile.ZipFile(io.BytesIO(data)) as archive:
         if set(archive.namelist()) != set(RUNTIME_FILES) or archive.testzip():
             raise ValueError("Release archive integrity check failed")
         for relative in RUNTIME_FILES:
-            if archive.read(relative) != checked_path(relative).read_bytes():
+            if archive.read(relative) != release_bytes(relative):
                 raise ValueError("Release archive differs from source: " + relative)
     return data
 
