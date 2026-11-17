@@ -2,6 +2,16 @@
 
 Versions here describe the distributed client configuration and documentation. The hosted MCP server is versioned separately.
 
+## 1.1.0 — 2026-11-17
+
+- Added a concise tool usage guide through `contextFileName`, covering tool selection, destinations, source limits, complete URLs, warnings, expiry, and the user's final review in Soundiiz.
+- Added the official Soundiiz logo to the README.
+- Audited the Gemini CLI manifest fields and gallery presentation. Gallery thumbnails use the GitHub owner's avatar; the manifest has no supported logo or icon field.
+
+Validation: Gemini CLI `0.68.0` passed native validation, local installation, activation, and the MCP connection check. The installed context file matches the packaged source, and the linked official logo is a valid 512 × 512 PNG.
+
+This release adds client guidance and presentation only. The hosted MCP tools and connection remain unchanged.
+
 ## 1.0.0 — 2026-11-17
 
 - Added the official Soundiiz Gemini CLI extension, connecting to `https://soundiiz.com/mcp` over Streamable HTTP without authentication.

@@ -1,5 +1,7 @@
 # Soundiiz MCP
 
+<img src="https://soundiiz.com/img/mcp/soundiiz-512.png" alt="Soundiiz" width="80" height="80">
+
 Official [Soundiiz](https://soundiiz.com) integration for AI assistants using the [Model Context Protocol](https://modelcontextprotocol.io/).
 
 Turn a tracklist or a public playlist URL into a Soundiiz import link, discover supported destinations, and check music transfer compatibility. You review the tracks and complete the transfer in Soundiiz.
@@ -20,7 +22,7 @@ Restart Gemini CLI, then check the connection:
 
 The extension is named `soundiiz` and connects to `https://soundiiz.com/mcp` using Streamable HTTP. No Soundiiz API key or sign-in is required to connect the MCP server. You connect your destination music service in Soundiiz when completing an import.
 
-Validated with Gemini CLI `0.68.0`.
+Validated with Gemini CLI `0.68.0`. The extension includes a concise [usage guide](context/soundiiz.md) loaded as context by Gemini.
 
 ### Try it
 
@@ -88,6 +90,6 @@ For account or transfer questions, visit [Soundiiz Support](https://support.soun
 
 ## Versions
 
-The Gemini extension has its own version, starting at `1.0.0`. This repository distributes connection settings and documentation; the MCP tools run on Soundiiz's hosted service. Pinning an extension release does not pin the server implementation.
+The Gemini extension has its own version. This repository distributes connection settings and documentation; the MCP tools run on Soundiiz's hosted service. Pinning an extension release does not pin the server implementation.
 
 See [CHANGELOG.md](CHANGELOG.md) for extension releases and [Gemini's extension guide](https://geminicli.com/docs/extensions/) for installation options.
