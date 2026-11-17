@@ -6,6 +6,29 @@ Official [Soundiiz](https://soundiiz.com) integration for AI assistants using th
 
 Turn a tracklist or a public playlist URL into a Soundiiz import link, discover supported destinations, and check music transfer compatibility. You review the tracks and complete the transfer in Soundiiz.
 
+## Quick start
+
+Connect a compatible AI assistant using these settings:
+
+| Setting | Value |
+| --- | --- |
+| Server URL | `https://soundiiz.com/mcp` |
+| Transport | Streamable HTTP |
+| Authentication | None |
+
+No Soundiiz API key or sign-in is required to connect. You review the tracks and complete any transfer in Soundiiz.
+
+Configuration fields vary by client. Follow the examples in the [Soundiiz setup documentation](https://soundiiz.com/api). The `gemini-extension.json` in this repository is for Gemini CLI. Antigravity uses `.antigravity-plugin/plugin.json` and `mcp_config.json`.
+
+### Try it
+
+- "Create a Soundiiz import link for a 20-track jazz playlist, with Spotify as the destination."
+- "Prepare an import to Apple Music from this public playlist: [paste the full playlist URL]."
+- "Which music services can receive a Soundiiz playlist import?"
+- "Can I transfer playlists from Spotify to YouTube Music, and can I keep them synced?"
+
+For an import, the assistant returns a temporary link. Open it, review the tracks, and finish the transfer in Soundiiz. Compatibility checks return information and guides; they do not start a transfer or create a synchronization.
+
 ## Install in Antigravity
 
 Install the plugin from this repository using [Antigravity CLI](https://antigravity.google/docs/getting-started?tab=cli):
@@ -37,15 +60,6 @@ Restart Gemini CLI, then check the connection:
 The extension is named `soundiiz` and connects to `https://soundiiz.com/mcp` using Streamable HTTP. No Soundiiz API key or sign-in is required to connect the MCP server. You connect your destination music service in Soundiiz when completing an import.
 
 Validated with Gemini CLI `0.68.0` and Antigravity CLI `1.5.10`. Both client packages share one concise [usage guide](rules/soundiiz.md). Gemini loads it as context; Antigravity loads it as a rule for Soundiiz requests.
-
-### Try it
-
-- "Create a Soundiiz import link for a 20-track jazz playlist, with Spotify as the destination."
-- "Prepare an import to Apple Music from this public playlist: [paste the full playlist URL]."
-- "Which music services can receive a Soundiiz playlist import?"
-- "Can I transfer playlists from Spotify to YouTube Music, and can I keep them synced?"
-
-For an import, the assistant returns a temporary link. Open it, review the tracks, and finish the transfer in Soundiiz. Compatibility checks return information and guides; they do not start a transfer or create a synchronization.
 
 ### Update or uninstall
 
@@ -81,18 +95,6 @@ The connected client discovers current tool descriptions and schemas from the ho
 - Destination and compatibility information comes from the Soundiiz catalog. It does not check an individual account's eligibility, subscription, regional availability, or live provider status.
 
 See the [Soundiiz MCP documentation](https://soundiiz.com/api) for current capabilities, limits, and setup examples.
-
-## Other MCP clients
-
-Configure your client's remote MCP connection with:
-
-| Setting | Value |
-| --- | --- |
-| Server URL | `https://soundiiz.com/mcp` |
-| Transport | Streamable HTTP |
-| Authentication | None |
-
-Configuration fields vary by client. Follow the examples in the [Soundiiz setup documentation](https://soundiiz.com/api). The `gemini-extension.json` in this repository is for Gemini CLI. Antigravity uses `.antigravity-plugin/plugin.json` and `mcp_config.json`.
 
 ## Troubleshooting
 
