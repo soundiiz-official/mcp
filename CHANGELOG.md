@@ -2,6 +2,15 @@
 
 Versions here describe the distributed client configuration and documentation. The hosted MCP server is versioned separately.
 
+## 1.3.0 — 2026-11-17
+
+- Added the native Cursor plugin manifest and hosted MCP configuration.
+- Licensed this public integration package under MIT; the hosted Soundiiz service is distributed separately.
+- Added the license and Cursor configuration to the reproducible release archive.
+- Added the catalog-specific 400 × 400 logo from the official GitHub organization avatar.
+
+Validation: nine offline packaging tests pass. Gemini CLI validates the combined package. Antigravity validates it with the expected warning about Cursor-only `mcp.json`; the standalone Antigravity projection passes strict validation. The official Cursor template validator passes with only its optional-hooks warning. No model session or business tool call was used.
+
 ## 1.2.0 — 2026-11-17
 
 - Added the native Antigravity plugin manifest, remote MCP configuration, bundled official logo, and three starter prompts.

@@ -6,6 +6,34 @@ Official [Soundiiz](https://soundiiz.com) integration for AI assistants using th
 
 Turn a tracklist or a public playlist URL into a Soundiiz import link, discover supported destinations, and check music transfer compatibility. You review the tracks and complete the transfer in Soundiiz.
 
+## Install in Cursor
+
+This repository includes a native Cursor plugin in `.cursor-plugin/plugin.json`,
+with the hosted MCP connection in `mcp.json`, the shared usage rule, and the official logo.
+
+To configure the connection directly in Cursor, add this entry to your user MCP
+settings (`~/.cursor/mcp.json`) or project MCP settings (`.cursor/mcp.json`):
+
+```json
+{
+  "mcpServers": {
+    "soundiiz": {
+      "url": "https://soundiiz.com/mcp"
+    }
+  }
+}
+```
+
+Merge this entry with existing servers. Do not overwrite other MCP settings.
+No Soundiiz API key is required. Use Cursor's MCP controls to enable the connection
+and confirm the tools are available. See the [shared usage guide](rules/soundiiz.md).
+
+For local plugin testing, place the repository contents in
+`~/.cursor/plugins/local/soundiiz`, reload Cursor, and check Customize.
+See [Cursor's plugin documentation](https://cursor.com/docs/plugins).
+Availability in the curated Marketplace is announced only after Cursor approves
+our submission.
+
 ## Install in Antigravity
 
 Install the plugin from this repository using [Antigravity CLI](https://antigravity.google/docs/getting-started?tab=cli):
@@ -111,3 +139,10 @@ See [CHANGELOG.md](CHANGELOG.md) for extension releases and [Gemini's extension 
 ## Repository maintenance
 
 See [the maintenance guide](https://github.com/soundiiz-official/mcp/blob/main/docs/maintaining.md) for the repository layout, validation commands, release procedure, and how to add another client integration.
+
+## License
+
+The client integration package in this repository is licensed under the
+[MIT License](LICENSE). It contains configuration, documentation, and packaging
+utilities. It does not contain or license the implementation of Soundiiz's hosted
+service.

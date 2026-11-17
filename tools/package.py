@@ -15,6 +15,9 @@ ROOT = Path(__file__).resolve().parent.parent
 MCP_URL = "https://soundiiz.com/mcp"
 RUNTIME_FILES = (
     "README.md",
+    "LICENSE",
+    ".cursor-plugin/plugin.json",
+    "mcp.json",
     "CHANGELOG.md",
     "gemini-extension.json",
     ".antigravity-plugin/plugin.json",
@@ -38,7 +41,7 @@ def checked_path(relative):
 
 def release_bytes(relative):
     raw = checked_path(relative).read_bytes()
-    if relative.endswith((".md", ".json")):
+    if relative == "LICENSE" or relative.endswith((".md", ".json")):
         raw = raw.replace(b"\r\n", b"\n")
     return raw
 
@@ -62,6 +65,18 @@ def check():
         raise ValueError("Gemini connection differs from the public MCP contract")
     if mcp["mcpServers"] != {"soundiiz": {"serverUrl": MCP_URL}}:
         raise ValueError("Antigravity connection differs from the public MCP contract")
+    cursor = load_json(".cursor-plugin/plugin.json")
+    if cursor.get("version") != version:
+        raise ValueError("Client package versions differ")
+    if cursor.get("name") != "soundiiz" or cursor.get("license") != "MIT":
+        raise ValueError("Cursor must use the Soundiiz package identity and MIT license")
+    if cursor.get("logo") != antigravity.get("logo"):
+        raise ValueError("Clients must reference the same bundled official logo")
+    if cursor.get("mcpServers") != "mcp.json":
+        raise ValueError("Cursor must reference its native MCP configuration")
+    cursor_mcp = load_json(cursor["mcpServers"])
+    if cursor_mcp != {"mcpServers": {"soundiiz": {"url": MCP_URL}}}:
+        raise ValueError("Cursor connection differs from the public MCP contract")
     if gemini.get("contextFileName") != "rules/soundiiz.md":
         raise ValueError("Gemini must reference the shared usage guide")
     checked_path(gemini["contextFileName"])
@@ -82,7 +97,7 @@ def check():
         raise ValueError("The logo must be square and at least 128 pixels")
     for relative in RUNTIME_FILES:
         raw = release_bytes(relative)
-        if relative.endswith((".md", ".json")):
+        if relative == "LICENSE" or relative.endswith((".md", ".json")):
             if b"\r" in raw or not raw.endswith(b"\n"):
                 raise ValueError("Text files must use UTF-8 with LF endings: " + relative)
             raw.decode("utf-8")

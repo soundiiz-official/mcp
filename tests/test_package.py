@@ -9,7 +9,8 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parent.parent
 FILES = (
-    "README.md", "CHANGELOG.md", "gemini-extension.json",
+    "README.md", "CHANGELOG.md", "LICENSE", "gemini-extension.json",
+    ".cursor-plugin/plugin.json", "mcp.json",
     ".antigravity-plugin/plugin.json", "mcp_config.json",
     "rules/soundiiz.md", "assets/soundiiz-512.png", "tools/package.py",
 )
@@ -33,13 +34,14 @@ class PackageCliTest(unittest.TestCase):
         )
 
     def set_version(self, version):
-        for relative in ("gemini-extension.json", ".antigravity-plugin/plugin.json"):
+        previous = json.loads((self.source / "gemini-extension.json").read_text())["version"]
+        for relative in ("gemini-extension.json", ".antigravity-plugin/plugin.json", ".cursor-plugin/plugin.json"):
             path = self.source / relative
             manifest = json.loads(path.read_text())
             manifest["version"] = version
             path.write_text(json.dumps(manifest) + "\n")
         changelog = self.source / "CHANGELOG.md"
-        changelog.write_text(changelog.read_text().replace("## 1.2.0 ", "## " + version + " ", 1))
+        changelog.write_text(changelog.read_text().replace("## " + previous + " ", "## " + version + " ", 1))
 
     def test_leading_zero_version_is_rejected_before_release(self):
         self.set_version("01.2.0")
@@ -73,6 +75,45 @@ class PackageCliTest(unittest.TestCase):
             for name in archive.namelist():
                 self.assertEqual((self.source / name).read_bytes(), archive.read(name))
 
+    def test_release_includes_license_and_cursor_connection(self):
+        # Exercise the real current checkout, independent from fixture file lists.
+        result = subprocess.run(
+            [sys.executable, str(ROOT / "tools/package.py"),
+             "--output", str(self.directory / "clients.zip")],
+            capture_output=True, text=True, check=False,
+        )
+        self.assertEqual(0, result.returncode, result.stderr)
+        with zipfile.ZipFile(self.directory / "clients.zip") as archive:
+            self.assertIn("LICENSE", archive.namelist())
+            self.assertIn(".cursor-plugin/plugin.json", archive.namelist())
+            self.assertIn("mcp.json", archive.namelist())
+            self.assertIn(b"MIT License", archive.read("LICENSE"))
+            cursor = json.loads(archive.read(".cursor-plugin/plugin.json"))
+            self.assertEqual("MIT", cursor["license"])
+            connection = json.loads(archive.read(cursor["mcpServers"]))
+            self.assertEqual(
+                {"soundiiz": {"url": "https://soundiiz.com/mcp"}},
+                connection["mcpServers"],
+            )
+
+    def test_cursor_connection_must_match_hosted_endpoint(self):
+        path = self.source / "mcp.json"
+        connection = json.loads(path.read_text())
+        connection["mcpServers"]["soundiiz"]["url"] = "https://example.invalid/mcp"
+        path.write_text(json.dumps(connection) + "\n")
+        result = self.run_cli("--check")
+        self.assertNotEqual(0, result.returncode, result.stdout)
+        self.assertIn("Cursor connection", result.stderr)
+
+    def test_cursor_version_must_match_other_clients(self):
+        path = self.source / ".cursor-plugin/plugin.json"
+        manifest = json.loads(path.read_text())
+        manifest["version"] = "9.0.0"
+        path.write_text(json.dumps(manifest) + "\n")
+        result = self.run_cli("--check")
+        self.assertNotEqual(0, result.returncode, result.stdout)
+        self.assertIn("versions differ", result.stderr)
+
     def test_external_symlink_is_rejected(self):
         outside = self.directory / "outside.txt"
         outside.write_text("Not part of the package.\n")
@@ -95,7 +136,7 @@ class PackageCliTest(unittest.TestCase):
         result = self.run_cli("--output", str(first))
         self.assertEqual(0, result.returncode, result.stderr)
         for relative in FILES:
-            if relative.endswith((".md", ".json")):
+            if relative == "LICENSE" or relative.endswith((".md", ".json")):
                 path = self.source / relative
                 path.write_bytes(path.read_bytes().replace(b"\n", b"\r\n"))
         second = self.directory / "crlf.zip"
