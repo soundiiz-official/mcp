@@ -1,6 +1,6 @@
 {
   "name": "soundiiz",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Official Soundiiz tools for tracklists, public playlist imports and music transfer compatibility.",
   "mcpServers": {
     "soundiiz": {
@@ -8,5 +8,5 @@
       "url": "https://soundiiz.com/mcp"
     }
   },
-  "contextFileName": "context/soundiiz.md"
+  "contextFileName": "rules/soundiiz.md"
 }

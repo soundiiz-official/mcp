@@ -1,3 +1,8 @@
+---
+trigger: model_decision
+description: Use Soundiiz tools for playlist import links, import destinations, and music transfer or playlist-sync compatibility.
+---
+
 # Soundiiz playlist tools
 
 Use the Soundiiz MCP tools to prepare playlist imports, list destinations, and check transfer or one-way playlist-sync compatibility.

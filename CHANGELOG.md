@@ -2,6 +2,17 @@
 
 Versions here describe the distributed client configuration and documentation. The hosted MCP server is versioned separately.
 
+## 1.2.0 — 2026-11-17
+
+- Added the native Antigravity plugin manifest, remote MCP configuration, bundled official logo, and three starter prompts.
+- Shared one usage guide between Gemini context and an Antigravity rule, keeping client guidance consistent.
+- Organized common assets, maintenance documentation, and an offline consistency checker and ZIP packager.
+- Documented direct GitHub installation separately from curated Marketplace availability.
+
+Validation: Antigravity CLI `1.5.10` passed strict native validation with no findings and installed the rule, logo, and MCP definition. Gemini CLI `0.68.0` passed validation, installation, and the MCP connection check. Five offline packaging tests pass, including version consistency, reproducible ZIPs, and rejection of external symlinks. No model session or business tool call was used.
+
+The hosted MCP service, authentication, tool schemas, and import limits remain unchanged.
+
 ## 1.1.0 — 2026-11-17
 
 - Added a concise tool usage guide through `contextFileName`, covering tool selection, destinations, source limits, complete URLs, warnings, expiry, and the user's final review in Soundiiz.

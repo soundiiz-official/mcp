@@ -1,12 +1,26 @@
 # Soundiiz MCP
 
-<img src="https://soundiiz.com/img/mcp/soundiiz-512.png" alt="Soundiiz" width="80" height="80">
+<img src="assets/soundiiz-512.png" alt="Soundiiz" width="80" height="80">
 
 Official [Soundiiz](https://soundiiz.com) integration for AI assistants using the [Model Context Protocol](https://modelcontextprotocol.io/).
 
 Turn a tracklist or a public playlist URL into a Soundiiz import link, discover supported destinations, and check music transfer compatibility. You review the tracks and complete the transfer in Soundiiz.
 
+## Install in Antigravity
+
+Install the plugin from this repository using [Antigravity CLI](https://antigravity.google/docs/getting-started?tab=cli):
+
+```sh
+agy plugin install https://github.com/soundiiz-official/mcp
+```
+
+Check the installed plugin with `agy plugin list`. It bundles the hosted MCP connection, a usage rule, and the official Soundiiz logo. No Soundiiz API key is required. Restart an active Antigravity session to load the plugin.
+
+Installation from GitHub is separate from inclusion in the curated Antigravity Marketplace. Marketplace availability is announced only after Google accepts the submission.
+
 ## Install in Gemini CLI
+
+Google moved free and Google AI Pro/Ultra subscription access to Antigravity CLI on June 18, 2026. Gemini CLI remains available with supported API and enterprise access. See [Google's transition announcement](https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/) for details.
 
 With an up-to-date [Gemini CLI](https://geminicli.com/docs/get-started/installation/) and Git installed, run this command in your terminal:
 
@@ -22,7 +36,7 @@ Restart Gemini CLI, then check the connection:
 
 The extension is named `soundiiz` and connects to `https://soundiiz.com/mcp` using Streamable HTTP. No Soundiiz API key or sign-in is required to connect the MCP server. You connect your destination music service in Soundiiz when completing an import.
 
-Validated with Gemini CLI `0.68.0`. The extension includes a concise [usage guide](context/soundiiz.md) loaded as context by Gemini.
+Validated with Gemini CLI `0.68.0` and Antigravity CLI `1.5.10`. Both client packages share one concise [usage guide](rules/soundiiz.md). Gemini loads it as context; Antigravity loads it as a rule for Soundiiz requests.
 
 ### Try it
 
@@ -78,7 +92,7 @@ Configure your client's remote MCP connection with:
 | Transport | Streamable HTTP |
 | Authentication | None |
 
-Configuration fields vary by client. Follow the examples in the [Soundiiz setup documentation](https://soundiiz.com/api). The `gemini-extension.json` in this repository is specifically for Gemini CLI.
+Configuration fields vary by client. Follow the examples in the [Soundiiz setup documentation](https://soundiiz.com/api). The `gemini-extension.json` in this repository is for Gemini CLI. Antigravity uses `.antigravity-plugin/plugin.json` and `mcp_config.json`.
 
 ## Troubleshooting
 
@@ -90,6 +104,10 @@ For account or transfer questions, visit [Soundiiz Support](https://support.soun
 
 ## Versions
 
-The Gemini extension has its own version. This repository distributes connection settings and documentation; the MCP tools run on Soundiiz's hosted service. Pinning an extension release does not pin the server implementation.
+The distributed client package has its own version, shared by the Gemini and Antigravity manifests. This repository distributes connection settings and documentation; the MCP tools run on Soundiiz's hosted service. Pinning an extension release does not pin the server implementation.
 
 See [CHANGELOG.md](CHANGELOG.md) for extension releases and [Gemini's extension guide](https://geminicli.com/docs/extensions/) for installation options.
+
+## Repository maintenance
+
+See [the maintenance guide](https://github.com/soundiiz-official/mcp/blob/main/docs/maintaining.md) for the repository layout, validation commands, release procedure, and how to add another client integration.

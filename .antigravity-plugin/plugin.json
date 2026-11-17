@@ -1,0 +1,26 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "soundiiz",
+  "displayName": "Soundiiz",
+  "version": "1.2.0",
+  "description": "Prepare playlist imports from tracklists or public playlist URLs, discover destinations, and check music transfer compatibility with Soundiiz.",
+  "logo": "assets/soundiiz-512.png",
+  "suggestedPrompts": [
+    "Create a Soundiiz import link for a 20-track jazz playlist with Spotify as the destination.",
+    "Which music services can receive a Soundiiz playlist import?",
+    "Can I transfer playlists from Spotify to YouTube Music and keep them synced?"
+  ],
+  "author": {
+    "name": "Soundiiz",
+    "url": "https://soundiiz.com"
+  },
+  "homepage": "https://soundiiz.com/api",
+  "repository": "https://github.com/soundiiz-official/mcp",
+  "keywords": [
+    "soundiiz",
+    "music",
+    "playlists",
+    "playlist-transfer",
+    "mcp"
+  ]
+}
