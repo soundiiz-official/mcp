@@ -2,13 +2,19 @@
 
 <img src="assets/soundiiz-512.png" alt="Soundiiz" width="80" height="80">
 
+[![Add to ChatGPT](https://img.shields.io/badge/Add_to-ChatGPT-000000?style=flat)](https://chatgpt.com/plugins/plugin_asdk_app_6aeb9fb7f5f0819181f706685e05c67b)
+[![Add to Claude](https://img.shields.io/badge/Add_to-Claude-D97757?style=flat)](https://claude.ai/directory/soundiiz)
+[![Soundiiz MCP connector on Glama](https://glama.ai/mcp/connectors/com.soundiiz/soundiiz/badges/score.svg)](https://glama.ai/mcp/connectors/com.soundiiz/soundiiz)
+
 Official [Soundiiz](https://soundiiz.com) integration for AI assistants using the [Model Context Protocol](https://modelcontextprotocol.io/).
 
 Turn a tracklist or a public playlist URL into a Soundiiz import link, discover supported destinations, and check music transfer compatibility. You review the tracks and complete the transfer in Soundiiz.
 
 ## Quick start
 
-Connect a compatible AI assistant using these settings:
+Add Soundiiz from the [ChatGPT directory](https://chatgpt.com/plugins/plugin_asdk_app_6aeb9fb7f5f0819181f706685e05c67b) or the [Claude directory](https://claude.ai/directory/soundiiz). Follow the setup prompts, then select Soundiiz in a conversation. Try the example prompts below.
+
+For other compatible AI assistants, connect using these settings:
 
 | Setting | Value |
 | --- | --- |
