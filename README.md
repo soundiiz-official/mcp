@@ -120,7 +120,7 @@ The connected client discovers current tool descriptions and schemas from the ho
 
 ## Import details and limits
 
-- Public playlist URL sources: Spotify, Apple Music, Deezer, SoundCloud, YouTube, YouTube Music, Qobuz, TIDAL, and public Soundiiz playlists. Use the full HTTPS playlist URL. Private playlists and shortened links are unsupported.
+- Public playlist URL sources: Spotify, Apple Music, Deezer, SoundCloud, YouTube, YouTube Music, Qobuz, TIDAL, and public Soundiiz playlists. Use the full HTTPS playlist URL. Private playlists and shortened links are unsupported. Spotify playlists created or owned by Spotify, including editorial playlists, cannot be imported; use a public playlist created by a Spotify user.
 - A URL import accepts up to 200 source items before filtering. Larger playlists are rejected; they are not silently shortened. The assistant should show any returned warnings and the actual number of tracks included.
 - A tracklist import requires a title and 1 to 200 tracks. Each track needs a title and an array of artists; unknown album or ISRC values should be omitted.
 - Include a destination only when one has been requested. Use the public platform identifier returned by the destination tool; existing Soundiiz corenames are also accepted.
