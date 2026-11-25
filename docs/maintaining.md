@@ -18,7 +18,7 @@ Keep client manifests in their required discovery locations. Shared assets and i
 
 ## Make a change
 
-1. Check the hosted tool contract and documentation before changing product claims or guidance. Preserve requested destinations, real track counts, warnings, expiry, and complete returned URLs.
+1. Check the hosted tool contract and documentation before changing product claims or guidance. For each hosted MCP update, check the README, shared rule, API documentation, Help Center, registry metadata, and any hosted skill; update only the affected surfaces. A server-side skill and a packaged client rule have separate delivery and activation paths. Preserve requested destinations, real track counts, warnings, expiry, and complete returned URLs.
 2. Update the shared usage guide when client guidance changes. Use only fields documented by the target client; an unsupported metadata field does not add a capability.
 3. Keep the Gemini, Antigravity, and Cursor package versions aligned and add a changelog entry. Package releases do not change or pin the hosted MCP server implementation.
 4. Run the offline checks and the native client validators. Test installation or update for affected clients, including the referenced context/rule and logo assets.

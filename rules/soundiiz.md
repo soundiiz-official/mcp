@@ -10,13 +10,14 @@ Use the Soundiiz MCP tools to prepare playlist imports, list destinations, and c
 ## Choose the tool
 
 - For a supplied or generated tracklist, use `createSoundiizImportLink`. Supply a title and 1 to 200 tracks. Every track needs a title and an `artists` array; use an empty array when artists are unknown. Omit unknown album or ISRC values.
-- For a public playlist URL, use `createSoundiizImportLinkFromUrl` with the full HTTPS URL. Let the tool read the actual playlist. If reading fails, explain the error rather than inventing tracks or claiming an import was created.
+- For a public playlist URL, use `createSoundiizImportLinkFromUrl` with the HTTPS URL as supplied, including its query parameters. Let the tool read the actual playlist. If reading fails, explain the error rather than inventing tracks or claiming an import was created.
 - Use `listSoundiizImportDestinations` for current import destinations and `getSoundiizTransferCompatibility` for supported item types, playlist sync, and guides between two platforms. These catalog results do not verify an individual account's eligibility or live provider availability.
 
 ## Preserve the user's request
 
+- Keep the supplied order and duplicates. Do not silently split a playlist above the limit into multiple import links; guide the user to the full Soundiiz flow.
 - Keep a requested destination. Otherwise omit `destination` so the user can choose in Soundiiz. Use public platform slugs returned by the tools; existing Soundiiz corenames are also accepted.
-- Public URL imports accept at most 200 source items before filtering. Do not silently truncate a larger playlist. Private playlists and shortened links are unsupported.
+- Public URL imports accept at most 200 source items before filtering. Do not silently truncate a larger playlist. Official short-link hosts are `link.deezer.com`, `spotify.link`, `spotify.app.link`, `apple.co`, and `on.soundcloud.com`; only public playlist targets on the same service are accepted. Other short links and private playlists are unsupported.
 - For an Apple Music source, preserve the storefront in its URL. For TIDAL, preserve a requested two-letter catalog country in `country`; the server default is `US`.
 
 ## Present the result

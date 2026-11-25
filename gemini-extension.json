@@ -1,6 +1,6 @@
 {
   "name": "soundiiz",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Official Soundiiz tools for tracklists, public playlist imports and music transfer compatibility.",
   "mcpServers": {
     "soundiiz": {

@@ -2,6 +2,14 @@
 
 Versions here describe the distributed client configuration and documentation. The hosted MCP server is versioned separately.
 
+## 1.4.0 — 2026-11-25
+
+- Updated the shared guide and README for the five official playlist-sharing hosts supported by the hosted MCP 0.4.0 server.
+- Documented the hosted `playlist-import` skill and its client-controlled activation, separately from the bundled client rule.
+- Preserved requested destinations, supplied order and duplicates, source limits, warnings, complete returned URLs, and user finalization in Soundiiz.
+
+The package still connects to the same public endpoint with four tools and no sign-in. The hosted MCP server has its own version and deployment; this package does not activate a client's Skills extension.
+
 ## 1.3.0 — 2026-11-17
 
 - Added the native Cursor plugin manifest and hosted MCP configuration.

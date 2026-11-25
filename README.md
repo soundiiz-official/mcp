@@ -120,7 +120,7 @@ The connected client discovers current tool descriptions and schemas from the ho
 
 ## Import details and limits
 
-- Public playlist URL sources: Spotify, Apple Music, Deezer, SoundCloud, YouTube, YouTube Music, Qobuz, TIDAL, and public Soundiiz playlists. Use the full HTTPS playlist URL. Private playlists and shortened links are unsupported. Spotify playlists created or owned by Spotify, including editorial playlists, cannot be imported; use a public playlist created by a Spotify user.
+- Public playlist URL sources: Spotify, Apple Music, Deezer, SoundCloud, YouTube, YouTube Music, Qobuz, TIDAL, and public Soundiiz playlists. Use an HTTPS playlist URL. Official sharing links from `link.deezer.com`, `spotify.link`, `spotify.app.link`, `apple.co`, and `on.soundcloud.com` are also supported when they lead to a public playlist on the same service. Other short links, private playlists, albums and individual tracks are unsupported. Spotify playlists created or owned by Spotify, including editorial playlists, cannot be imported; use a public playlist created by a Spotify user.
 - A URL import accepts up to 200 source items before filtering. Larger playlists are rejected; they are not silently shortened. The assistant should show any returned warnings and the actual number of tracks included.
 - A tracklist import requires a title and 1 to 200 tracks. Each track needs a title and an array of artists; unknown album or ISRC values should be omitted.
 - Include a destination only when one has been requested. Use the public platform identifier returned by the destination tool; existing Soundiiz corenames are also accepted.
@@ -137,6 +137,16 @@ See the [Soundiiz MCP documentation](https://soundiiz.com/api) for current capab
 - If an import fails, follow the returned error or retry interval. A failed response is not a successful import; do not construct an import URL from the request.
 
 For account or transfer questions, visit [Soundiiz Support](https://support.soundiiz.com/). Use this repository's [issues](https://github.com/soundiiz-official/mcp/issues) for problems with the published client configuration or its documentation.
+
+## Optional playlist-import skill
+
+The hosted MCP server also serves one `playlist-import` skill through the Skills over MCP extension. It guides the existing four tools: choose a public playlist URL or tracklist, preserve the destination, explain limits and warnings, and let the user complete the transfer in Soundiiz. No local skill installation is needed in clients that support and enable this extension.
+
+The skill is available through `skills/list`, `skills/get`, and the resource `skill://soundiiz/playlist-import/SKILL.md`. Discovery or reading the resource does not activate it; the client controls loading and approval. The four tools remain usable without the skill.
+
+Activation was verified against the public Soundiiz server in interactive **Claude Code 2.1.332**, with a Claude Team account and the required managed opt-in enabled. For a server named `soundiiz`, the skill appears as `soundiiz:playlist-import` in `/skills` and can be invoked with `/soundiiz:playlist-import`. Availability and workspace requirements vary by client. See [Claude Code's MCP skills documentation](https://code.claude.com/docs/en/mcp#use-skills-from-mcp-servers).
+
+The bundled `rules/soundiiz.md` is separate guidance for the packaged clients. Updating a hosted skill does not replace that packaged file.
 
 ## Versions
 
