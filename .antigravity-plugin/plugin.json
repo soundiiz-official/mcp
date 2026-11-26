@@ -2,13 +2,13 @@
   "$schema": "https://antigravity.google/schemas/v1/plugin.json",
   "name": "soundiiz",
   "displayName": "Soundiiz",
-  "version": "1.4.0",
-  "description": "Prepare playlist imports from tracklists or public playlist URLs, discover destinations, and check music transfer compatibility with Soundiiz.",
+  "version": "1.5.0",
+  "description": "Create playlists with your AI assistant, prepare imports from song lists or public playlist URLs, and check destinations and transfer support with Soundiiz.",
   "logo": "assets/soundiiz-512.png",
   "suggestedPrompts": [
-    "Create a Soundiiz import link for a 20-track jazz playlist with Spotify as the destination.",
-    "Which music services can receive a Soundiiz playlist import?",
-    "Can I transfer playlists from Spotify to YouTube Music and keep them synced?"
+    "Let's build a nostalgic 2000s road trip playlist together, about 25 songs, ready to import to Spotify with Soundiiz.",
+    "A friend made a public Spotify playlist, but I use Apple Music. I'll paste the link: help me import it with Soundiiz.",
+    "I'll paste a concert setlist. Help me relive it as a YouTube Music playlist with Soundiiz."
   ],
   "author": {
     "name": "Soundiiz",

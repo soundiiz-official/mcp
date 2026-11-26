@@ -1,7 +1,7 @@
 {
   "name": "soundiiz",
-  "version": "1.4.0",
-  "description": "Prepare playlist imports from tracklists or public playlist URLs, discover destinations, and check music transfer compatibility with Soundiiz.",
+  "version": "1.5.0",
+  "description": "Create playlists with your AI assistant, prepare imports from song lists or public playlist URLs, and check destinations and transfer support with Soundiiz.",
   "author": {
     "name": "Soundiiz",
     "email": "contact@soundiiz.com"

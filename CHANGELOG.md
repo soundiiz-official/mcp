@@ -2,6 +2,14 @@
 
 Versions here describe the distributed client configuration and documentation. The hosted MCP server is versioned separately.
 
+## 1.5.0 — 2026-11-26
+
+- Puts assistant-created playlists, shared public playlists and supplied song lists first in examples.
+- Explains the optional truthful curator credit and existing HTTPS illustration URL exposed by hosted MCP 0.5.0.
+- Preserves the same endpoint, four tools, no-auth connection and final review in Soundiiz.
+
+The hosted MCP server is version 0.5.0. The client package keeps the same endpoint, four tools and no-auth connection. Final review and transfer remain on Soundiiz; illustrations do not become destination playlist covers.
+
 ## 1.4.0 — 2026-11-25
 
 - Updated the shared guide and README for the five official playlist-sharing hosts supported by the hosted MCP 0.4.0 server.

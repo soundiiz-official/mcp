@@ -1,7 +1,7 @@
 {
   "name": "soundiiz",
-  "version": "1.4.0",
-  "description": "Official Soundiiz tools for tracklists, public playlist imports and music transfer compatibility.",
+  "version": "1.5.0",
+  "description": "Create playlists with your AI assistant, prepare imports from song lists or public playlist URLs, and check destinations and transfer support with Soundiiz.",
   "mcpServers": {
     "soundiiz": {
       "type": "http",

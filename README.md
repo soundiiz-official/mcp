@@ -8,7 +8,7 @@
 
 Official [Soundiiz](https://soundiiz.com) integration for AI assistants using the [Model Context Protocol](https://modelcontextprotocol.io/).
 
-Turn a tracklist or a public playlist URL into a Soundiiz import link, discover supported destinations, and check music transfer compatibility. You review the tracks and complete the transfer in Soundiiz.
+Create a playlist with your AI assistant, bring a public playlist to another service, or turn a concert setlist into a playlist. Shape the selection in chat, then open Soundiiz to review the tracks and finish the import where you listen. Destination and transfer-compatibility tools are also available.
 
 ## Quick start
 
@@ -28,9 +28,9 @@ Configuration fields vary by client. Follow the examples in the [Soundiiz setup 
 
 ### Try it
 
-- "Create a Soundiiz import link for a 20-track jazz playlist, with Spotify as the destination."
-- "Prepare an import to Apple Music from this public playlist: [paste the full playlist URL]."
-- "Which music services can receive a Soundiiz playlist import?"
+- "Let's build a nostalgic 2000s road trip playlist together, about 25 songs, ready to import to Spotify with Soundiiz."
+- "A friend made a public Spotify playlist, but I use Apple Music. I'll paste the link: help me import it with Soundiiz."
+- "I'll paste a concert setlist. Help me relive it as a YouTube Music playlist with Soundiiz."
 - "Can I transfer playlists from Spotify to YouTube Music, and can I keep them synced?"
 
 For an import, the assistant returns a temporary link. Open it, review the tracks, and finish the transfer in Soundiiz. Compatibility checks return information and guides; they do not start a transfer or create a synchronization.
@@ -111,7 +111,7 @@ Restart Gemini CLI after updating or uninstalling the extension.
 
 | Tool | What it does |
 | --- | --- |
-| `createSoundiizImportLink` | Creates a 24-hour import link from a supplied tracklist of 1 to 200 tracks. |
+| `createSoundiizImportLink` | Creates a 24-hour import link from 1 to 200 supplied or assistant-selected tracks, with optional curator credit and an existing illustration URL. |
 | `createSoundiizImportLinkFromUrl` | Reads a supported public playlist URL with at most 200 source items and creates a 24-hour import link. |
 | `listSoundiizImportDestinations` | Lists the currently configured playlist import destinations. |
 | `getSoundiizTransferCompatibility` | Returns supported transfer item types, one-way playlist sync support, and guide links for two music services. |
@@ -123,6 +123,7 @@ The connected client discovers current tool descriptions and schemas from the ho
 - Public playlist URL sources: Spotify, Apple Music, Deezer, SoundCloud, YouTube, YouTube Music, Qobuz, TIDAL, and public Soundiiz playlists. Use an HTTPS playlist URL. Official sharing links from `link.deezer.com`, `spotify.link`, `spotify.app.link`, `apple.co`, and `on.soundcloud.com` are also supported when they lead to a public playlist on the same service. Other short links, private playlists, albums and individual tracks are unsupported. Spotify playlists created or owned by Spotify, including editorial playlists, cannot be imported; use a public playlist created by a Spotify user.
 - A URL import accepts up to 200 source items before filtering. Larger playlists are rejected; they are not silently shortened. The assistant should show any returned warnings and the actual number of tracks included.
 - A tracklist import requires a title and 1 to 200 tracks. Each track needs a title and an array of artists; unknown album or ISRC values should be omitted.
+- Tracklist imports can include a truthful single-line curator credit in `sourceName` (up to 120 characters) and an existing HTTPS illustration URL in `sourceLogo` (up to 2048 characters). The illustration is the large image on the Soundiiz import page; it does not replace the small platform icon or the destination playlist cover. No image upload or hosting is provided. Omit unknown metadata and do not invent image URLs. These fields are not arguments of the public-playlist URL tool.
 - Include a destination only when one has been requested. Use the public platform identifier returned by the destination tool; existing Soundiiz corenames are also accepted.
 - Keep returned import and guide URLs intact, including their query parameters. Import links expire after 24 hours.
 - The MCP server does not read private libraries or complete transfers into music-service accounts. The assistant supplies a tracklist when needed; the server does not generate music recommendations.
